@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react'
-import mealsImage from '../../assets/spread.jpg'
-import classes from './Header.module.css'
-import HeaderCartButton from './HeaderCartButton'
+import { Fragment } from 'react';
+
+import HeaderCartButton from './HeaderCartButton';
+import mealsImage from '../../assets/spread.jpg';
+import classes from './Header.module.css';
 
 const Header = (props) => {
     return (
@@ -17,4 +18,4 @@ const Header = (props) => {
     );
 };
 
-export default Header
+export default Header;

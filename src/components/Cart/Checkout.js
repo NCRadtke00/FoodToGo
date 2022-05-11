@@ -52,7 +52,14 @@ const Checkout = (props) => {
             return;
         }
 
-        // Submit cart data
+        props.onConfirm({
+            name: enteredName,
+            street: enteredStreet,
+            city: enteredCity,
+            state: enteredState,
+            postalCode: enteredPostalCode,
+
+        });
     };
     const nameControlClasses = `${classes.control} ${formInputsValidity.name ? '' : classes.invalid
         }`;
@@ -64,6 +71,8 @@ const Checkout = (props) => {
         }`;
     const postalCodeControlClasses = `${classes.control} ${formInputsValidity.postalCode ? '' : classes.invalid
         }`;
+    //this cleans up classnames could turn this into custom hook or function
+    //never trust client side data as legit data, should always add check on the server side
     return (
         <form className={classes.form} onSubmit={confirmHandler}>
             <div className={nameControlClasses}>

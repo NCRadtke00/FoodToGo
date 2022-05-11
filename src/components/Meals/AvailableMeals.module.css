@@ -12,7 +12,9 @@
 .MealsError{
   text-align: center;
   color:red;
-  font-size: 8rem;
+  font-size: 4rem;
+  border: solid white;
+  border-radius: 1px;
 }
 .meals ul {
   list-style: none;

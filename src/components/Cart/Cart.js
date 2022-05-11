@@ -7,6 +7,7 @@ import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
 const Cart = (props) => {
     const [isCheckingout, setIsCheckingout] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const cartCtx = useContext(CartContext);
 
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -22,8 +23,9 @@ const Cart = (props) => {
     const orderHandler = () => {
         setIsCheckingout(true);
     };
-    const submitOrderHandler = (userData) => {
-        fetch('https://f00dzilla-default-rtdb.firebaseio.com/orders.json', {
+    const submitOrderHandler = async (userData) => {
+        setIsSubmitting(true);
+        await fetch('https://f00dzilla-default-rtdb.firebaseio.com/orders.json', {
             method: 'POST',
             body: JSON.stringify({
                 user: userData,

@@ -24,6 +24,7 @@ const Checkout = props => {
                 <label htmlFor='postal'> Zip Code </label>
                 <input type="text" id='postal' />
             </div>
+            <button type="button" onClick={props.onCancel}> Cancel</button>
             <button> Confirm </button>
         </form>
     )

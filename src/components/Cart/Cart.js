@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
@@ -6,6 +6,7 @@ import classes from './Cart.module.css';
 import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
 const Cart = (props) => {
+    const [isCheckingout, setIsCheckingout] = useState(false);
     const cartCtx = useContext(CartContext);
 
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -17,6 +18,9 @@ const Cart = (props) => {
 
     const cartItemAddHandler = (item) => {
         cartCtx.addItem({ ...item, amount: 1 });
+    };
+    const orderHandler = () => {
+        setIsCheckingout(true);
     };
 
     const cartItems = (

@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import classes from './AvailableMeals.module.css'
 import Card from '../UI/Card'
 import MealItem from '../Meals/MealItem/MealItem'
 //removing dummy data and creating realtime database with firebase
 //using useEffect to render the data from firebase
 const AvailableMeals = () => {
+    const [meals, setMeals] = useState([]);
     useEffect(() => {
         const fetchMeals = async () => {
             const response = await fetch('https://f00dzilla-default-rtdb.firebaseio.com/meals.json');
@@ -19,12 +20,12 @@ const AvailableMeals = () => {
                 })
             }
         };
-        fetchMeals();
+        setMeals(loadedMeals);
     }, []);
 
 
 
-    const mealsList = DUMMY_MEALS.map((meal) => (
+    const mealsList = meals.map((meal) => (
         <MealItem
             id={meal.id}
             key={meal.id}

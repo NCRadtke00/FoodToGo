@@ -6,21 +6,25 @@ import MealItem from '../Meals/MealItem/MealItem'
 //using useEffect to render the data from firebase
 const AvailableMeals = () => {
     const [meals, setMeals] = useState([]);
+
     useEffect(() => {
         const fetchMeals = async () => {
             const response = await fetch('https://f00dzilla-default-rtdb.firebaseio.com/meals.json');
             const responseData = await response.json();
+
             const loadedMeals = [];
+
             for (const key in responseData) {
                 loadedMeals.push({
                     id: key,
                     name: responseData[key].name,
                     description: responseData[key].description,
                     price: responseData[key].price
-                })
+                });
             }
+            setMeals(loadedMeals);
         };
-        setMeals(loadedMeals);
+        fetchMeals();
     }, []);
 
 

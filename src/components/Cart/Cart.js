@@ -19,20 +19,25 @@ const Cart = (props) => {
     };
 
     const cartItemAddHandler = (item) => {
-        cartCtx.addItem({ ...item, amount: 1 });
+        cartCtx.addItem(item);
     };
+
     const orderHandler = () => {
-        setIsCheckingout(true);
+        setIsCheckout(true);
     };
+
     const submitOrderHandler = async (userData) => {
         setIsSubmitting(true);
         await fetch('https://f00dzilla-default-rtdb.firebaseio.com/orders.json', {
             method: 'POST',
             body: JSON.stringify({
                 user: userData,
-                orderedItems: cartCtx.items
-            })
+                orderedItems: cartCtx.items,
+            }),
         });
+        setIsSubmitting(false);
+        setDidSubmit(true);
+        cartCtx.clearCart();
     };
     const cartItems = (
         <ul className={classes['cart-items']}>
